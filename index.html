@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+    <head>
+        <title>
+            HW8
+        </title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+    <div class="container-lg p-0">
+        <form id="search" class = 'card p-5 bg-light bg-primary mb-3' onreset="clearPage()" novalidate> <!-- action="#server.py">  onsubmit="onSubmit()"> -->
+            <h3 class="card-title text-center">Entertainment Event Ticket Search</h3>
+            <br>
+            <div class="form-group row">
+                <label for="keyword" class="col-sm-2 col-form-label">Keyword</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="keyword" placeholder="Enter Artist, Team or Event Name (eg: Lakers)" required>
+                    <div class="invalid-feedback">
+                        Please enter a keyword
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="category" class="col-sm-2 col-form-label">Category</label>
+                <div class="col-sm-4">
+                    <select name="category" id="category" class="form-control">
+                        <option selected>All</option>
+                        <option>Music</option>
+                        <option>Sports</option>
+                        <option>Arts & Theatre</option>
+                        <option>Film</option>
+                        <option>Miscellaneous</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="distance" class="col-sm-2 col-form-label">Distance</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" id="distance" placeholder="10">
+                </div>
+                 <span class="col-sm-4">
+                  <input type="text" class="form-control" id="unit" value="Miles">
+                </span>
+            </div>
+            <div class="form-group row">
+                <label for="from" class="col-sm-2 col-form-label">From</label>
+                <div class="col-sm-10">
+                    <input type="radio" id="current" name="location" value="current" checked onchange="handleRadioButton()">
+                    <label for="current">Current location</label>
+                    <br/>
+                    <input type="radio" id="custom" name="location" value="custom" style="align-self: end;" onchange="handleRadioButton()">
+                    <span>
+                    <label for="custom">Other. Please specify:</label>
+                    <br/>
+                    <input for="custom" type="text" class="form-control col-sm-12" name="custom_location" id="custom_location" placeholder="location" disabled>
+                        <div class="invalid-feedback">
+                            Please enter a location
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <button type="submit" class="btn btn-primary">
+                  <span class="material-icons">search</span> Search
+                </button>
+                 &nbsp; &nbsp;
+                <button type="reset" class="btn btn-light btn-outline-dark">
+                  <span class="material-icons">clear_all</span> Clear
+                </button>
+            </div>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Number</mat-label>
+                <input type="text"
+                       placeholder="Pick one"
+                       aria-label="Number"
+                       matInput
+                       [formControl]="myControl"
+                       [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+
+        </form>
+    </div>
+    <center>
+        <button type="button" class="btn btn-primary">Results</button>
+        &nbsp;&nbsp;
+        <a href="">Favorites</a>
+    </center>
+
+        <br/><br/>
+        <center><div id="search_result"></div></center>
+        <br/><br/>
+        <center><h1 id=event_name></h1></center>
+
+        <center>
+            <table>
+                <tr>
+                    <td id="text" style="text-align: left;"></td>
+                    <td id="image"></td>
+                </tr>
+
+            </table>
+        </center>
+
+    </body>
+    <script type="text/javascript" src="src/script.js"></script>
+<!--    <script src="https://ipinfo.io/json?token=4916b89d62d548&callback=recordData"></script>-->
+</html>

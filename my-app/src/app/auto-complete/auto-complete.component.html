@@ -1,0 +1,16 @@
+<!-- <p>auto-complete works!</p> -->
+<!-- <form class="example-form"> -->
+<!-- <mat-form-field class="example-full-width"> -->
+<!-- <mat-label>Number</mat-label> -->
+<input type="text" class="form-control" name="keyword" id="keyword"
+  placeholder="Enter Artist, Team or Event Name (eg: Lakers)" matInput [formControl]="myControl"
+  [matAutocomplete]="auto" 
+  required />
+
+<mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+  <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+    {{option}}
+  </mat-option>
+</mat-autocomplete>
+<!-- </mat-form-field> -->
+<!-- </form> -->
